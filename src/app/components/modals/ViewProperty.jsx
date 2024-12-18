@@ -1,13 +1,28 @@
 import React from 'react';
 import { useFetchPropertiesIdQuery } from '../../redux/services/propertiesService';
+import Loader from '../layouts/Loader';
 
 const ViewProperty = ({ isOpen, onClose, id }) => {
   // Fetch property details based on the id passed to the modal
   const { data, error, isLoading } = useFetchPropertiesIdQuery(id);
 
-  // Handle loading and error states more gracefully
-  if (isLoading) return <div className="text-center">Loading property details...</div>;
-  if (error) return <div className="text-center text-red-500">Error loading property details.</div>;
+  // Loading State
+  if (isLoading) {
+    return (
+      <div className='mt-10'>
+        <Loader />
+      </div>
+    );
+  }
+
+  // Error State
+  if (error) {
+    return (
+      <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-90">
+        <div className="text-red-500 text-lg">Error loading property details.</div>
+      </div>
+    );
+  }
 
   // Check if property data is available
   const property = data?.data; // Access the actual property details
@@ -21,19 +36,21 @@ const ViewProperty = ({ isOpen, onClose, id }) => {
               X
             </button>
 
-            {/* Display property details */}
-            {property ? (
+            {/* Only render property details if they exist */}
+            {property && (
               <div>
-                {property.image && <img src={property.image} alt={property.property_name} className="w-full rounded-lg md:h-[20rem]" />}
-                <h2 className="text-3xl  mt-8 font-bold">{property.property_name}</h2>
+                {property.image && (
+                  <img
+                    src={property.image}
+                    alt={property.property_name}
+                    className="w-full rounded-lg md:h-[20rem]"
+                  />
+                )}
+                <h2 className="text-3xl mt-8 font-bold">{property.property_name}</h2>
                 <p>{property.address}</p>
                 <p>{`Price: $${property.price.toLocaleString()}`}</p>
                 <p>{`Type: ${property.property_type}`}</p>
-                
-                {/* Add any other property details here */}
               </div>
-            ) : (
-              <div className="text-center text-gray-500">No property details found.</div>
             )}
           </div>
         </div>
