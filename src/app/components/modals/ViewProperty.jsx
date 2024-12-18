@@ -24,7 +24,7 @@ const ViewProperty = ({ isOpen, onClose, id }) => {
             {/* Display property details */}
             {property ? (
               <div>
-                {property.image && <img src={property.image} alt={property.property_name} className="w-full h-[20rem]" />}
+                {property.image && <img src={property.image} alt={property.property_name} className="w-full rounded-lg md:h-[20rem]" />}
                 <h2 className="text-3xl  mt-8 font-bold">{property.property_name}</h2>
                 <p>{property.address}</p>
                 <p>{`Price: $${property.price.toLocaleString()}`}</p>

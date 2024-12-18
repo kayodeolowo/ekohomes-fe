@@ -97,18 +97,18 @@ const Properties = () => {
       </div>
 
       {/* Pagination Controls */}
-      <div className="w-fit mx-auto mt-5">
+      <div className="w-fit mx-auto mb-4 mt-5">
         <div className="flex justify-between items-center space-x-2 mt-4">
           <button
             onClick={goToPreviousPage}
             disabled={currentPage === 1}
-            className="px-4 py-2 bg-gray-300 rounded-md"
+            className=" max-md:text-sm px-2 md:px-4 py-2 bg-gray-300 rounded-md"
           >
             Previous
           </button>
 
           <div className="text-center">
-            <p className="text-gray-500">
+            <p className="text-gray-500 max-md:text-sm">
               Total Items: {data ? data?.data?.totalItems : 0} | Page {currentPage} of {data ? data?.data?.totalPages : 0}
             </p>
           </div>
@@ -116,7 +116,7 @@ const Properties = () => {
           <button
             onClick={goToNextPage}
             disabled={data && data?.data?.totalPages === currentPage}
-            className="px-4 py-2 bg-gray-300 rounded-md"
+            className="max-md:text-sm px-2 md:px-4 py-2 bg-gray-300 rounded-md"
           >
             Next
           </button>
