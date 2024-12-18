@@ -13,11 +13,11 @@ const PropertyCard = ({ property }) => {
         className="object-cover w-full rounded-t-lg"
       />
       <div className='p-4'>
-      <h1 className='text-xl font-semibold  line-clamp-1 mt-2'>{property.property_name}</h1>
+      <h1 className='text-lg font-semibold  line-clamp-1 mt-2'>{property.property_name}</h1>
      <div className='flex items-center justify-between  w-full'>
      <h1 className='text-2xl text-gray-300 font-bold mt-2'>${property.price.toLocaleString()}</h1>
 
-     <p>{property.property_type}</p>
+     <p className='bg-purple  px-2 py-1 font-semibold text-sm rounded-md'>{property.property_type}</p>
      </div>
       <p className='mt-2 line-clamp-1'>{property.address}</p>
      
