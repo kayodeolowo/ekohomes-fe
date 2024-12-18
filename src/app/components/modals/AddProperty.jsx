@@ -147,7 +147,11 @@ const AddProperty = ({ isOpen, onClose }) => {
 
               <button
                 type="submit"
-                className="bg-purple mt-5 text-white p-2 rounded w-full"
+                className={`mt-5 p-2 rounded w-full ${
+                    isSaving || isSubmitting || !isFormValid
+                      ? 'bg-gray-800 text-gray-700 cursor-not-allowed' // Darker background and cursor change when disabled
+                      : 'bg-purple text-white cursor-pointer' // Normal background when enabled
+                  }`}
                 disabled={isSaving || isSubmitting || !isFormValid}
               >
                 {isSaving ? 'Saving...' : 'Add Property'}
