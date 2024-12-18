@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 export const propertiesService = createApi({
   reducerPath: 'propertiesService',
-  baseQuery: fetchBaseQuery({ baseUrl: 'http://ekohomes.onrender.com/api/v1/' }),
+  baseQuery: fetchBaseQuery({ baseUrl: 'https://ekohomes.onrender.com/api/v1/' }),
   endpoints: (builder) => ({
     fetchProperties: builder.query({
       query: ({ page = 1, search = '' }) => {
