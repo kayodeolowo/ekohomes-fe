@@ -10,7 +10,7 @@ const PropertyCard = ({ property }) => {
         width={300} 
         height={300} 
         alt={property.property_name} 
-        className="object-cover w-full rounded-t-lg"
+        className="object-cover w-full h-[10rem] rounded-t-lg"
       />
       <div className='p-4'>
       <h1 className='text-lg font-semibold  line-clamp-1 mt-2'>{property.property_name}</h1>

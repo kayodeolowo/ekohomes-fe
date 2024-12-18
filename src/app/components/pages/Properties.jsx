@@ -6,9 +6,15 @@ import ViewProperty from "../modals/ViewProperty";
 import { useFetchPropertiesQuery } from "../../redux/services/propertiesService";
 import Loader from "../layouts/Loader";
 import { toast } from 'react-hot-toast';
+import { PrimaryButton } from "../layouts/PrimaryButton";
+import AddProperty from "../modals/AddProperty"
+import { FaBackward } from "react-icons/fa";
+import { FaForward } from "react-icons/fa";
+
 
 const Properties = () => {
   const [openModal, setOpenModal] = useState(false);
+  const [openAddPropertyModal, setOpenAddPropertyModal] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [searchQuery, setSearchQuery] = useState("");
   const [debouncedSearch, setDebouncedSearch] = useState("");
@@ -49,6 +55,11 @@ const Properties = () => {
     setOpenModal(true);
   };
 
+
+  const handleAddPropertyClick = () => {
+    setOpenAddPropertyModal(true);
+  };
+
   // Handle pagination
   const goToNextPage = () => {
     if (data && data.data.totalPages > currentPage) {
@@ -70,8 +81,8 @@ const Properties = () => {
   return (
     <Container>
       {/* Search bar */}
-      <div className="flex items-center justify-center mt-5 mb-8">
-        <div className="bg-dark flex p-2 border-secondaryblack border w-[20rem] items-center rounded-lg">
+      <div className="flex items-center sm:flex-row flex-col  w-full justify-between mt-5 mb-8">
+        <div className="bg-dark dlex flex p-2 border-secondaryblack border w-[20rem] items-center rounded-lg">
           <input
             value={searchQuery}
             onChange={handleSearchChange}
@@ -79,6 +90,8 @@ const Properties = () => {
             className="bg-inherit text-gray-300 focus:outline-none w-[95%]"
           />
         </div>
+
+         <PrimaryButton className=" max-sm:mt-4 py-2" onClick={() => handleAddPropertyClick()}>Add Property</PrimaryButton>
       </div>
 
       {/* Display properties */}
@@ -97,14 +110,14 @@ const Properties = () => {
       </div>
 
       {/* Pagination Controls */}
-      <div className="w-fit mx-auto mb-4 mt-5">
+      <div className="w-fit mx-auto mb-6 mt-10">
         <div className="flex justify-between items-center space-x-2 mt-4">
           <button
             onClick={goToPreviousPage}
             disabled={currentPage === 1}
             className=" max-md:text-sm px-2 md:px-4 py-2 bg-gray-300 rounded-md"
           >
-            Previous
+            <FaBackward />
           </button>
 
           <div className="text-center">
@@ -118,7 +131,7 @@ const Properties = () => {
             disabled={data && data?.data?.totalPages === currentPage}
             className="max-md:text-sm px-2 md:px-4 py-2 bg-gray-300 rounded-md"
           >
-            Next
+            <FaForward />
           </button>
         </div>
       </div>
@@ -129,6 +142,11 @@ const Properties = () => {
         isOpen={openModal}
         id={selectedPropertyId}
       />
+
+
+<AddProperty
+ onClose={() => setOpenAddPropertyModal(false)}
+ isOpen={openAddPropertyModal}/>
     </Container>
   );
 };
