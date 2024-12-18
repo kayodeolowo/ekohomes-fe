@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 
 export const metadata = {
   title: "Eko Homes Properties",
-  description: "View our Properties ror Rents",
+  description: "View our Properties for Rents",
 };
 
 export default function RootLayout({ children }) {
